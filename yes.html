@@ -1,0 +1,224 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DGLOB Portfolio — Dglob Technologies</title>
+  <meta name="description" content="Dglob Technologies — empowering innovation through technology. Web · Software · Design · Video." />  <style>
+    /* ====== Reset & Base ====== */
+    :root{
+      --bg:#0b0f14;
+      --card:#0f1720;
+      --muted:#9aa4af;
+      --accent:#2dd4bf;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+      --maxw:1100px;
+      --gap:20px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--bg),#071017 120%);
+      color:#e6eef3;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:28px 16px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{width:100%;max-width:var(--maxw)}
+
+    /* ====== Header ====== */
+    header{
+      display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:flex;align-items:center;justify-content:center;font-weight:700;color:#021014;font-size:18px;box-shadow:0 6px 18px rgba(45,212,191,0.08);
+    }
+    .brand h1{font-size:16px;margin:0}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:8px 10px;border-radius:8px}
+    nav a:hover{color:#fff;background:rgba(255,255,255,0.03)}
+    .cta{background:var(--accent);color:#021014;padding:8px 12px;border-radius:10px;font-weight:600;text-decoration:none}
+
+    /* ====== Hero ====== */
+    .hero{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:var(--radius);
+      padding:34px;display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:center;margin-bottom:24px;box-shadow:0 6px 30px rgba(2,6,23,0.6);
+    }
+    .hero h2{margin:0 0 10px 0;font-size:28px}
+    .hero p{margin:0;color:var(--muted)}
+    .hero .actions{margin-top:18px;display:flex;gap:12px}
+
+    .hero-card{background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));padding:18px;border-radius:14px}
+    .hero-card small{color:var(--muted)}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-size:12px;color:var(--muted)}
+
+    /* ====== Sections ====== */
+    section{margin-bottom:20px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+    .card{background:var(--card);padding:18px;border-radius:12px}
+    .card h3{margin:0 0 8px 0;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+
+    /* ====== Project Placeholder ====== */
+    .projects-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px;border-radius:12px;border:1px dashed rgba(255,255,255,0.04);background:var(--glass);text-align:center}
+    .projects-placeholder h4{margin:0 0 8px 0}
+    .muted{color:var(--muted)}
+
+    /* ====== Contact ====== */
+    .contact{display:flex;gap:20px;align-items:center}
+    .contact .email{background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);padding:12px;border-radius:10px}
+
+    /* ====== Footer ====== */
+    footer{margin-top:32px;padding:18px;border-radius:12px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* ====== Responsive ====== */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .cards{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:520px){
+      body{padding:16px}
+      .cards{grid-template-columns:1fr}
+      .brand h1{display:none}
+      .logo{width:44px;height:44px;font-size:16px}
+      .hero h2{font-size:22px}
+    }
+
+    /* small helpers */
+    .row{display:flex;gap:12px;align-items:center}
+    .pill{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-size:13px;color:var(--muted)}
+  </style></head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">Dg</div>
+        <div>
+          <h1>DGLOB TECHNOLOGIES</h1>
+          <div class="muted" style="font-size:12px;">Empowering Innovation Through Technology</div>
+        </div>
+      </div><nav>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a class="cta" href="#contact">Get in Touch</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div>
+      <h2>Empowering Innovation Through Technology</h2>
+      <p>DGLOB Technologies builds reliable and future-ready digital solutions — web, software, design, and video services for businesses and creators across the globe.</p>
+
+      <div class="actions">
+        <a class="cta" href="#contact">Work with us</a>
+        <a href="#projects" style="color:var(--muted);padding:8px 12px;border-radius:10px;text-decoration:none;background:transparent">View portfolio</a>
+      </div>
+
+      <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+        <span class="badge">Web • Mobile • Video • Design</span>
+        <span class="badge">Remote Friendly</span>
+        <span class="badge">Global Clients</span>
+      </div>
+    </div>
+
+    <aside class="hero-card">
+      <small>Company at a glance</small>
+      <h3 style="margin-top:8px">Dglob Technologies</h3>
+      <p class="muted">Founded by Damilola. Focused on accessible tech solutions and creative services for individuals and businesses worldwide.</p>
+
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+        <div class="pill">Design</div>
+        <div class="pill">Development</div>
+        <div class="pill">Training</div>
+      </div>
+    </aside>
+  </section>
+
+  <section id="about">
+    <div class="card" style="margin-bottom:16px">
+      <h3>About DGLOB</h3>
+      <p class="muted">Dglob Technologies is a global technology brand delivering web development, digital design, animation, and practical tech training. We build simple, reliable products and train creators to scale their skills.</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <h3 style="margin-bottom:10px">Services</h3>
+    <div class="cards">
+      <div class="card">
+        <h3>Web & Software</h3>
+        <p class="muted">Responsive websites, web apps, and backend systems built for performance and scalability.</p>
+      </div>
+      <div class="card">
+        <h3>Design & Animation</h3>
+        <p class="muted">Branding, motion graphics, and animation tailored for adverts, social, and platforms.</p>
+      </div>
+      <div class="card">
+        <h3>Video & Editing</h3>
+        <p class="muted">Advert editing, long-form edits, and content-ready video production.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" style="margin-top:18px">
+    <h3 style="margin-bottom:12px">Projects</h3>
+    <div class="projects-placeholder">
+      <h4>No projects yet</h4>
+      <p class="muted">This space will showcase websites, videos, and designs by DGLOB. Upload your creations and they will appear here.</p>
+      <small class="muted" style="margin-top:12px">Pro tip: Save project assets in a folder named <code>/projects</code> and add thumbnails as <code>project-1.jpg</code>, <code>project-2.jpg</code>.</small>
+    </div>
+  </section>
+
+  <section id="contact" style="margin-top:18px">
+    <h3>Contact</h3>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center">
+      <div class="contact">
+        <div class="email">
+          <strong>Email</strong>
+          <div class="muted" style="margin-top:6px">info@dglob.tech (placeholder)</div>
+        </div>
+        <div class="email">
+          <strong>WhatsApp</strong>
+          <div class="muted" style="margin-top:6px">+234 800 000 0000 (placeholder)</div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:220px">
+        <p class="muted">Want to collaborate? Send a short message to the email above or add your contact and we will reach out.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> Dglob Technologies — All Rights Reserved.
+</footer>
+
+  </div>  <script>
+    // small scripts
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const href = a.getAttribute('href');
+        if(href.length>1){
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      });
+    });
+  </script></body>
+</html>
