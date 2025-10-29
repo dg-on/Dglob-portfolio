@@ -413,9 +413,9 @@
 
   // Contact form -> opens default email client (mailto) with filled content
   function sendEmail(){
-    const name = encodeURIComponent(document.getElementById('name').value.trim());
-    const email = encodeURIComponent(document.getElementById('email').value.trim());
-    const message = encodeURIComponent(document.getElementById('message').value.trim());
+    const name =document.getElementById('name').value.trim();
+    const email =document.getElementById('email').value.trim();
+    const message =document.getElementById('message').value.trim();
 
     if(!name || !email || !message){
       alert('Please complete all fields.');
