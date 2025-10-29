@@ -425,15 +425,15 @@
     // Compose mailto link
     const to = 'info.dglob@gmail.com,akuredamilola2021@gmail.com';
     const subject = encodeURIComponent('DGLOB Website Inquiry from ' + (name || 'Website Visitor'));
-    const body = encodeURIComponent(
+    const body =
       'Name: ' + name + '\n' +
       'Contact: ' + email + '\n\n' +
       'Message:\n' + message + '\n\n' +
       '— Sent from DGLOB website contact form'
-    );
+    ;
 
     // open mail client
-    window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + body;
+    window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + encodeURIComponent(body);
   }
 
   // Accessibility: close modal with Esc
