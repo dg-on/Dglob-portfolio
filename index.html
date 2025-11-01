@@ -327,6 +327,131 @@
       grid-template-columns: repeat(3, 1fr); 
       gap: 18px; 
     }
+    /* Video Project Styles */
+    .video-preview {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+    }
+    
+    .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s var(--ease);
+    z-index: 2;
+    }
+    
+    .tile:hover .play-button {
+    background: rgba(0, 196, 255, 0.9);
+    transform: translate(-50%, -50%) scale(1.1);
+    }
+    
+    .media-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    padding: 4px;
+    z-index: 3;
+    }
+    
+    .image-indicator {
+    color: #00c4ff;
+    }
+    
+    .video-indicator {
+    color: #ff6b6b;
+    }
+    
+    /* Video Modal Styles */
+    .video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+    }
+    
+    .video-container iframe,
+    .video-container video {
+    width: 100%;
+    height: 100%;
+    border: none;
+    }
+    
+    .video-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--muted);
+    font-size: 16px;
+    }
+    
+    .video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    }
+    
+    .video-container:hover .video-controls {
+    opacity: 1;
+    }
+    
+    .video-controls button {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    margin: 0 5px;
+    }
+    
+    /* Enhanced project modal for videos */
+    .project .left {
+    position: relative;
+    }
+    
+    .project-video {
+    height: 400px;
+    }
+    
+    @media (max-width: 980px) {
+    .project-video {
+    height: 300px;
+    }
+    }
+    
+    @media (max-width: 640px) {
+    .project-video {
+    height: 250px;
+    }
+    }
     
     .tile { 
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); 
@@ -850,36 +975,114 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section class="container section" id="work" aria-labelledby="work-heading">
-      <h3 id="work-heading" style="margin:0 0 18px">Projects</h3>
+<!-- PROJECTS -->
+<section class="container section" id="work" aria-labelledby="work-heading">
+  <h3 id="work-heading" style="margin:0 0 18px">Projects</h3>
 
-      <div class="grid">
-        <div class="tile reveal" data-title="Dglob Blog" data-desc="A responsive blog website built with HTML, CSS, and JavaScript. Features a modern design, fast loading times, and excellent user experience across all devices." data-img="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&auto=format&fit=crop" tabindex="0">
-          <div class="thumb">
-            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&auto=format&fit=crop" alt="DGLOB Blog website interface showing responsive design" loading="lazy">
-          </div>
-          <h3>Website: Dglob Blog</h3>
-          <p>A responsive blog website built with HTML, CSS, and JavaScript.</p>
-        </div>
-
-        <div class="tile reveal" data-title="Tech Workshop Flyer" data-desc="Promotional flyer designed for a tech workshop event. Created with attention to visual hierarchy, brand consistency, and effective communication of event details." data-img="https://images.unsplash.com/photo-1521847268350-5f7f2b6c9b3f?q=80&w=600&auto=format&fit=crop" tabindex="0">
-          <div class="thumb">
-            <img src="https://images.unsplash.com/photo-1521847268350-5f7f2b6c9b3f?q=80&w=600&auto=format&fit=crop" alt="Tech Workshop promotional flyer design" loading="lazy">
-          </div>
-          <h3>Flyer: Tech Workshop</h3>
-          <p>Promotional flyer designed for our tech workshop event.</p>
-        </div>
-
-        <div class="tile reveal" data-title="Social Media Ad" data-desc="A short advert video for social media promotion. Focused on high engagement, brand awareness, and driving conversions through compelling visual storytelling." data-img="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=600&auto=format&fit=crop" tabindex="0">
-          <div class="thumb">
-            <img src="graceonaji1.jpg?q=80&w=600&auto=format&fit=crop" alt="Social media advertisement video thumbnail" loading="lazy">
-          </div>
-          <h3>Video: Music Concert Video </h3>
-          <p>A short video to create awarenessforanupcomingmusicconcert.</p>
+  <div class="grid">
+    <!-- Project 1: Image-based -->
+    <div class="tile reveal" 
+         data-title="Dglob Blog" 
+         data-desc="A responsive blog website built with HTML, CSS, and JavaScript. Features a modern design, fast loading times, and excellent user experience across all devices." 
+         data-media="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&auto=format&fit=crop"
+         data-type="image"
+         tabindex="0">
+      <div class="thumb">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&auto=format&fit=crop" 
+             alt="DGLOB Blog website interface showing responsive design" 
+             loading="lazy">
+        <div class="media-indicator image-indicator" title="Image Project">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+          </svg>
         </div>
       </div>
-    </section>
+      <h3>Website: Dglob Blog</h3>
+      <p>A responsive blog website built with HTML, CSS, and JavaScript.</p>
+    </div>
+
+    <!-- Project 2: Video-based -->
+    <div class="tile reveal" 
+         data-title="Social Media Ad Campaign" 
+         data-desc="A comprehensive social media advertising campaign featuring motion graphics, animated transitions, and compelling CTAs. Increased client engagement by 300%." 
+         data-media="https://player.vimeo.com/video/76979871?h=8272103f6e" 
+         data-type="video"
+         data-video-type="vimeo"
+         tabindex="0">
+      <div class="thumb">
+        <div class="video-preview" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+          <div class="play-button">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="white">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="media-indicator video-indicator" title="Video Project">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+          </svg>
+        </div>
+      </div>
+      <h3>Video: Social Media Campaign</h3>
+      <p>Animated social media ads with motion graphics and effects.</p>
+    </div>
+
+    <!-- Project 3: Local Video -->
+    <div class="tile reveal" 
+         data-title="Product Demo Video" 
+         data-desc="A product demonstration video showcasing features and benefits. Created with professional lighting, smooth transitions, and clear audio narration." 
+         data-media="/videos/product-demo.mp4" 
+         data-type="video"
+         data-video-type="html5"
+         data-poster="/images/video-poster.jpg"
+         tabindex="0">
+      <div class="thumb">
+        <div class="video-preview" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+          <div class="play-button">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="white">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+          <img src="/images/video-poster.jpg" alt="Product demo video thumbnail" style="width:100%;height:100%;object-fit:cover;opacity:0.7;">
+        </div>
+        <div class="media-indicator video-indicator" title="Video Project">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+          </svg>
+        </div>
+      </div>
+      <h3>Video: Product Demo</h3>
+      <p>Professional product demonstration with clear narration.</p>
+    </div>
+
+    <!-- Project 4: YouTube Video -->
+    <div class="tile reveal" 
+         data-title="Motion Graphics Showreel" 
+         data-desc="A compilation of our best motion graphics work, featuring animated logos, explainer videos, and visual effects for various clients across different industries." 
+         data-media="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+         data-type="video"
+         data-video-type="youtube"
+         tabindex="0">
+      <div class="thumb">
+        <div class="video-preview" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+          <div class="play-button">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="white">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+          <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Motion graphics showreel thumbnail" style="width:100%;height:100%;object-fit:cover;opacity:0.7;">
+        </div>
+        <div class="media-indicator video-indicator" title="Video Project">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+          </svg>
+        </div>
+      </div>
+      <h3>Video: Motion Graphics Reel</h3>
+      <p>Compilation of our best motion graphics and animation work.</p>
+    </div>
+  </div>
+</section>
 
     <!-- CONTRIBUTORS -->
     <section class="container section" id="contributors" aria-labelledby="contributors-heading">
@@ -1026,470 +1229,591 @@
   </svg>
 </button>
 <script>
-  // DOM Ready
-  document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu functionality
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mainMenu = document.getElementById('main-menu');
+// DOM Ready
+document.addEventListener('DOMContentLoaded', function() {
+  // Mobile menu functionality
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mainMenu = document.getElementById('main-menu');
+  
+  if (menuToggle && mainMenu) {
+    menuToggle.addEventListener('click', function() {
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', !isExpanded);
+      mainMenu.classList.toggle('open');
+    });
     
-    if (menuToggle && mainMenu) {
-      menuToggle.addEventListener('click', function() {
-        const isExpanded = this.getAttribute('aria-expanded') === 'true';
-        this.setAttribute('aria-expanded', !isExpanded);
-        mainMenu.classList.toggle('open');
+    // Close menu when clicking on a link
+    mainMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        mainMenu.classList.remove('open');
       });
+    });
+  }
+  
+  // Simple reveal on scroll with fallback
+  const reveals = document.querySelectorAll('.reveal');
+  
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    
+    reveals.forEach(r => io.observe(r));
+  } else {
+    // Fallback for older browsers
+    reveals.forEach(r => r.classList.add('visible'));
+  }
+
+  // Smooth scroll for nav links with header offset
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
       
-      // Close menu when clicking on a link
-      mainMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          menuToggle.setAttribute('aria-expanded', 'false');
-          mainMenu.classList.remove('open');
+      if (el) {
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const targetPosition = el.offsetTop - headerHeight - 20;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
         });
-      });
-    }
-    // Start similar project button in modal
-    document.getElementById('startSimilarProject').addEventListener('click', function() {
-    // Close the modal first
-    closeModal();
-    
-    // Then scroll to contact section after a brief delay
-    setTimeout(() => {
-    const contactSection = document.getElementById('contact');
+        
+        // Update active nav link
+        document.querySelectorAll('nav a').forEach(link => {
+          link.classList.remove('active');
+        });
+        a.classList.add('active');
+      }
+    });
+  });
+
+  // Update active nav link on scroll
+  function updateActiveNavLink() {
+    const sections = document.querySelectorAll('section[id]');
     const headerHeight = document.querySelector('header').offsetHeight;
-    const targetPosition = contactSection.offsetTop - headerHeight - 20;
+    const scrollPosition = window.scrollY + headerHeight + 100;
     
-    window.scrollTo({
-    top: targetPosition,
-    behavior: 'smooth'
-    });
-    
-    // Focus on the first form field for better UX
-    document.getElementById('name').focus();
-    }, 300);
-    });
-    // Simple reveal on scroll with fallback
-    const reveals = document.querySelectorAll('.reveal');
-    
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        document.querySelectorAll('nav a').forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
           }
         });
-      }, { threshold: 0.12 });
-      
-      reveals.forEach(r => io.observe(r));
-    } else {
-      // Fallback for older browsers
-      reveals.forEach(r => r.classList.add('visible'));
-    }
-
-    // Smooth scroll for nav links with header offset
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const id = a.getAttribute('href').slice(1);
-        const el = document.getElementById(id);
-        
-        if (el) {
-          const headerHeight = document.querySelector('header').offsetHeight;
-          const targetPosition = el.offsetTop - headerHeight - 20;
-          
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-          
-          // Update active nav link
-          document.querySelectorAll('nav a').forEach(link => {
-            link.classList.remove('active');
-          });
-          a.classList.add('active');
-        }
-      });
-    });
-
-    // Update active nav link on scroll
-    function updateActiveNavLink() {
-      const sections = document.querySelectorAll('section[id]');
-      const headerHeight = document.querySelector('header').offsetHeight;
-      const scrollPosition = window.scrollY + headerHeight + 100;
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          document.querySelectorAll('nav a').forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${sectionId}`) {
-              link.classList.add('active');
-            }
-          });
-        }
-      });
-    }
-    
-    window.addEventListener('scroll', updateActiveNavLink);
-    updateActiveNavLink(); // Initial call
-    // Portfolio modal
-    const tiles = document.querySelectorAll('.tile');
-    const overlay = document.getElementById('overlay');
-    const projectTitle = document.getElementById('projectTitle');
-    const projectDesc = document.getElementById('projectDesc');
-    const projectImg = document.getElementById('projectImg');
-    const closeProject = document.getElementById('closeProject');
-
-    tiles.forEach(t => {
-      t.addEventListener('click', () => {
-        openProjectModal(t);
-      });
-      
-      // Add keyboard support
-      t.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          openProjectModal(t);
-        }
-      });
-    });
-
-    function openProjectModal(tile) {
-      const title = tile.dataset.title || 'Project';
-      const desc = tile.dataset.desc || '';
-      const img = tile.dataset.img || '';
-      
-      projectTitle.textContent = title;
-      projectDesc.textContent = desc;
-      
-      if (img) {
-        projectImg.innerHTML = `<img src="${img}" style="width:100%;height:100%;object-fit:cover" alt="${title} project image"/>`;
-      } else {
-        projectImg.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);">No image available</div>';
       }
-      
-      overlay.classList.add('open');
-      overlay.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
-      closeProject.focus();
-    }
+    });
+  }
+  
+  window.addEventListener('scroll', updateActiveNavLink);
+  updateActiveNavLink(); // Initial call
 
+  // Portfolio modal functionality
+  const tiles = document.querySelectorAll('.tile');
+  const overlay = document.getElementById('overlay');
+  const projectTitle = document.getElementById('projectTitle');
+  const projectDesc = document.getElementById('projectDesc');
+  const projectImg = document.getElementById('projectImg');
+  const closeProject = document.getElementById('closeProject');
+
+  // Enhanced closeModal function
+  function closeModal() {
+    // Stop any playing videos before closing
+    const videos = document.querySelectorAll('video, iframe');
+    videos.forEach(video => {
+      if (video.tagName === 'VIDEO') {
+        video.pause();
+        video.currentTime = 0;
+      } else if (video.tagName === 'IFRAME') {
+        // Reset iframe source to stop video playback
+        const src = video.src;
+        video.src = '';
+        video.src = src.replace('autoplay=1', 'autoplay=0');
+      }
+    });
+    
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  // Close button event listener - FIXED
+  if (closeProject) {
     closeProject.addEventListener('click', closeModal);
-    
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) {
-        closeModal();
-      }
-    });
+  }
 
-    function closeModal() {
-      overlay.classList.remove('open');
-      overlay.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = ''; // Restore scrolling
-    }
-
-    // Hero CTA hooks
-    document.getElementById('startBtn').addEventListener('click', () => {
-      document.querySelector('a[href="#contact"]').click();
-    });
-    
-    document.getElementById('viewWork').addEventListener('click', () => {
-      document.querySelector('a[href="#work"]').click();
-    });
-
-    // Contact form handling
-    const contactForm = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const formMessage = document.getElementById('formMessage');
-    
-    if (contactForm) {
-      contactForm.addEventListener('submit', handleFormSubmit);
-      
-      // Real-time validation
-      const inputs = contactForm.querySelectorAll('input, textarea');
-      inputs.forEach(input => {
-        input.addEventListener('blur', validateField);
-        input.addEventListener('input', clearFieldError);
-      });
-    }
-    
-    function validateField(e) {
-      const field = e.target;
-      const errorElement = document.getElementById(field.id + 'Error');
-      
-      if (!field.checkValidity()) {
-        showFieldError(field, errorElement);
-        return false;
-      }
-      
-      clearFieldError(field);
-      return true;
-    }
-    
-    function showFieldError(field, errorElement) {
-      field.style.borderColor = '#ff6b6b';
-      if (errorElement) {
-        errorElement.style.display = 'block';
-      }
-    }
-    
-    function clearFieldError(e) {
-      const field = e.target || e;
-      const errorElement = document.getElementById(field.id + 'Error');
-      
-      field.style.borderColor = '';
-      if (errorElement) {
-        errorElement.style.display = 'none';
-      }
-    }
-    
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      
-      // Validate all fields
-      let isValid = true;
-      const fields = [
-        { id: 'name', errorId: 'nameError' },
-        { id: 'email', errorId: 'emailError' },
-        { id: 'message', errorId: 'messageError' }
-      ];
-      
-      fields.forEach(field => {
-        const input = document.getElementById(field.id);
-        const errorElement = document.getElementById(field.errorId);
-        
-        if (!input.checkValidity()) {
-          showFieldError(input, errorElement);
-          isValid = false;
-        }
-      });
-      
-      if (!isValid) {
-        showFormMessage('Please correct the errors above.', 'error');
-        return;
-      }
-      
-      // Show loading state
-      submitBtn.disabled = true;
-      submitBtn.classList.add('loading');
-      
-      // Simulate form submission (replace with actual form handling)
-      setTimeout(() => {
-        // In a real implementation, you would send the form data to a server
-        // For now, we'll use the mailto approach as in the original code
-        sendEmail();
-        
-        // Show success message
-        showFormMessage('Thank you! Your message has been sent successfully.', 'success');
-        contactForm.reset();
-        
-        // Reset button state
-        submitBtn.disabled = false;
-        submitBtn.classList.remove('loading');
-      }, 1500);
-    }
-    
-    function showFormMessage(message, type) {
-      formMessage.textContent = message;
-      formMessage.className = 'form-message ' + type;
-    }
-    
-    // Contact form -> opens default email client (mailto) with filled content
-    function sendEmail() {
-      const name = encodeURIComponent(document.getElementById('name').value.trim());
-      const email = encodeURIComponent(document.getElementById('email').value.trim());
-      const message = encodeURIComponent(document.getElementById('message').value.trim());
-
-      if (!name || !email || !message) {
-        showFormMessage('Please complete all fields.', 'error');
-        return;
-      }
-
-      // Compose mailto link
-      const to = 'info.dglob@gmail.com,akuredamilola2021@gmail.com';
-      const subject = encodeURIComponent('DGLOB Website Inquiry from ' + (name || 'Website Visitor'));
-      const body = encodeURIComponent(
-        'Name: ' + name + '\n' +
-        'Contact: ' + email + '\n\n' +
-        'Message:\n' + message + '\n\n' +
-        '— Sent from DGLOB website contact form'
-      );
-
-      // Open mail client
-      window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + body;
-    }
-
-    // Accessibility: close modal with Esc
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && overlay.classList.contains('open')) {
-        closeModal();
-      }
-    });
-    
-    // Lazy loading for images
-    if ('loading' in HTMLImageElement.prototype) {
-      // Browser supports native lazy loading
-      const images = document.querySelectorAll('img[loading="lazy"]');
-      images.forEach(img => {
-        if (img.dataset.src) {
-          img.src = img.dataset.src;
-        }
-      });
+  // Close modal when clicking on overlay background
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      closeModal();
     }
   });
-  // Chatbot functionality
-  document.addEventListener('DOMContentLoaded', function() {
-    const chatbotContainer = document.getElementById('chatbot-container');
-    const chatbotToggle = document.getElementById('chatbot-toggle');
-    const chatbotClose = document.getElementById('chatbot-close');
-    const chatbotInput = document.getElementById('chatbot-input');
-    const chatbotSend = document.getElementById('chatbot-send');
-    const chatbotMessages = document.getElementById('chatbot-messages');
-  
-    // Chatbot knowledge base
-    const knowledgeBase = {
-      greetings: [
-        "Hello! I'm your DGLOB assistant. How can I help you today?",
-        "Hi there! Ready to discuss your project?",
-        "Welcome to DGLOB Technologies! What can I assist you with?"
-      ],
-      services: {
-        web: "We offer full-stack web development including frontend (HTML/CSS/JS, React, Vue) and backend (Node.js, Python, PHP). We build responsive, scalable websites and web applications.",
-        design: "Our design services include UI/UX design, branding, graphic design, and motion graphics. We create visually appealing designs that convert.",
-        video: "We provide video editing, motion graphics, social media ads, and corporate videos. From concept to final delivery.",
-        training: "We offer tech training, workshops, and 1-on-1 mentorship in web development, design, and digital skills.",
-        event: "We handle professional event media setup, live streaming, and technical support for conferences and corporate events."
-      },
-      pricing: "Our pricing depends on project scope. We offer flexible packages: Basic ($500-$2K), Business ($2K-$10K), and Enterprise ($10K+). Would you like a custom quote?",
-      timeline: "Typical project timelines: Small websites (2-4 weeks), Web apps (4-12 weeks), Design projects (1-3 weeks). We can adjust based on your needs.",
-      contact: "You can reach us at:\n📧 info.dglob@gmail.com\n📱 +234 811 266 6133 (WhatsApp)\n💬 Or fill out our contact form!",
-      portfolio: "Check out our Projects section to see our work. We've built blogs, business sites, web apps, and more!",
-      default: "I'm not sure I understand. You can ask about:\n• Our services\n• Pricing\n• Project timeline\n• How to contact us\n• View our portfolio"
-    };
-  
-    // Quick reply questions
-    const quickReplies = [
-      "What services do you offer?",
-      "How much does a website cost?",
-      "What's your timeline?",
-      "Contact information",
-      "View portfolio"
-    ];
-  
-    // Toggle chatbot
-    chatbotToggle.addEventListener('click', () => {
-      chatbotContainer.classList.add('open');
-      chatbotInput.focus();
-    });
-  
-    chatbotClose.addEventListener('click', () => {
-      chatbotContainer.classList.remove('open');
-    });
-  
-    // Send message function
-    function sendMessage() {
-      const message = chatbotInput.value.trim();
-      if (!message) return;
-  
-      // Add user message
-      addMessage(message, 'user');
-      chatbotInput.value = '';
-  
-      // Bot response
-      setTimeout(() => {
-        const response = generateResponse(message);
-        addMessage(response.message, 'bot');
-        
-        // Add quick replies if it's the first bot message
-        if (response.showQuickReplies) {
-          addQuickReplies();
-        }
-      }, 1000);
+
+  // Close modal with Escape key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) {
+      closeModal();
     }
-  
-    // Generate bot response
-    function generateResponse(message) {
-      const lowerMessage = message.toLowerCase();
-      
-      if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
-        return { 
-          message: knowledgeBase.greetings[Math.floor(Math.random() * knowledgeBase.greetings.length)],
-          showQuickReplies: true 
-        };
-      } else if (lowerMessage.includes('service') || lowerMessage.includes('what do you do')) {
-        return { 
-          message: "We offer several services:\n\n🌐 Web Development: " + knowledgeBase.services.web + 
-                  "\n\n🎨 Design & Animation: " + knowledgeBase.services.design +
-                  "\n\n🎥 Video Production: " + knowledgeBase.services.video +
-                  "\n\n📚 Tech Training: " + knowledgeBase.services.training +
-                  "\n\n🎪 Event Media: " + knowledgeBase.services.event +
-                  "\n\nWhich service interests you most?",
-          showQuickReplies: false 
-        };
-      } else if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('how much')) {
-        return { message: knowledgeBase.pricing, showQuickReplies: false };
-      } else if (lowerMessage.includes('time') || lowerMessage.includes('how long') || lowerMessage.includes('duration')) {
-        return { message: knowledgeBase.timeline, showQuickReplies: false };
-      } else if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('phone') || lowerMessage.includes('whatsapp')) {
-        return { message: knowledgeBase.contact, showQuickReplies: false };
-      } else if (lowerMessage.includes('portfolio') || lowerMessage.includes('work') || lowerMessage.includes('project')) {
-        return { message: knowledgeBase.portfolio, showQuickReplies: false };
+  });
+
+  // Project tile click handlers
+  tiles.forEach(t => {
+    t.addEventListener('click', () => {
+      openProjectModal(t);
+    });
+    
+    t.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openProjectModal(t);
+      }
+    });
+  });
+
+  function openProjectModal(tile) {
+    const title = tile.dataset.title || 'Project';
+    const desc = tile.dataset.desc || '';
+    const media = tile.dataset.media || '';
+    const mediaType = tile.dataset.type || 'image';
+    const videoType = tile.dataset.videoType || 'html5';
+    const poster = tile.dataset.poster || '';
+    
+    projectTitle.textContent = title;
+    projectDesc.textContent = desc;
+    
+    // Clear previous content
+    projectImg.innerHTML = '';
+    projectImg.className = '';
+    
+    if (mediaType === 'video') {
+      projectImg.classList.add('video-container', 'project-video');
+      loadVideo(media, videoType, poster);
+    } else {
+      projectImg.classList.remove('video-container', 'project-video');
+      if (media) {
+        projectImg.innerHTML = `<img src="${media}" style="width:100%;height:100%;object-fit:cover" alt="${title} project image"/>`;
       } else {
-        return { message: knowledgeBase.default, showQuickReplies: true };
+        projectImg.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);">No media available</div>';
       }
     }
-  
-    // Add message to chat
-    function addMessage(text, sender) {
-      const messageDiv = document.createElement('div');
-      messageDiv.className = sender + '-message';
-      
-      const messageText = document.createElement('p');
-      messageText.textContent = text;
-      messageText.style.margin = '0';
-      messageText.style.whiteSpace = 'pre-line';
-      
-      messageDiv.appendChild(messageText);
-      chatbotMessages.appendChild(messageDiv);
-      
-      // Scroll to bottom
-      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
-  
-    // Add quick replies
-    function addQuickReplies() {
-      const quickRepliesDiv = document.createElement('div');
-      quickRepliesDiv.className = 'quick-replies';
-      
-      quickReplies.forEach(reply => {
-        const button = document.createElement('button');
-        button.className = 'quick-reply';
-        button.textContent = reply;
-        button.addEventListener('click', () => {
-          chatbotInput.value = reply;
-          sendMessage();
-        });
-        quickRepliesDiv.appendChild(button);
-      });
-      
-      chatbotMessages.appendChild(quickRepliesDiv);
-      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
-  
-    // Event listeners
-    chatbotSend.addEventListener('click', sendMessage);
     
-    chatbotInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        sendMessage();
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    
+    // Focus on close button for accessibility
+    setTimeout(() => {
+      if (closeProject) {
+        closeProject.focus();
+      }
+    }, 100);
+  }
+
+  function loadVideo(mediaUrl, videoType, posterUrl) {
+    const videoContainer = document.getElementById('projectImg');
+    
+    // Show loading state
+    videoContainer.innerHTML = '<div class="video-loading">Loading video...</div>';
+    
+    setTimeout(() => {
+      let videoHTML = '';
+      
+      switch (videoType) {
+        case 'youtube':
+          videoHTML = `
+            <iframe 
+              src="${mediaUrl}?autoplay=1&rel=0&modestbranding=1" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+            <div class="video-controls">
+              <button onclick="openInNewTab('${mediaUrl}')">Watch on YouTube</button>
+            </div>
+          `;
+          break;
+          
+        case 'vimeo':
+          videoHTML = `
+            <iframe 
+              src="${mediaUrl}?autoplay=1&title=0&byline=0&portrait=0" 
+              frameborder="0" 
+              allow="autoplay; fullscreen; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+            <div class="video-controls">
+              <button onclick="openInNewTab('${mediaUrl}')">Watch on Vimeo</button>
+            </div>
+          `;
+          break;
+          
+        case 'html5':
+        default:
+          videoHTML = `
+            <video 
+              controls 
+              autoplay 
+              ${posterUrl ? `poster="${posterUrl}"` : ''}
+              style="width:100%;height:100%;object-fit:contain">
+              <source src="${mediaUrl}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="video-controls">
+              <button onclick="downloadVideo('${mediaUrl}')">Download Video</button>
+            </div>
+          `;
+          break;
+      }
+      
+      videoContainer.innerHTML = videoHTML;
+    }, 500);
+  }
+
+  // Start similar project button
+  const startSimilarProject = document.getElementById('startSimilarProject');
+  if (startSimilarProject) {
+    startSimilarProject.addEventListener('click', function(e) {
+      e.preventDefault();
+      closeModal();
+      
+      // Then scroll to contact section after a brief delay
+      setTimeout(() => {
+        const contactSection = document.getElementById('contact');
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const targetPosition = contactSection.offsetTop - headerHeight - 20;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+        
+        // Update active nav link
+        document.querySelectorAll('nav a').forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#contact') {
+            link.classList.add('active');
+          }
+        });
+      }, 300);
+    });
+  }
+
+  // Hero CTA hooks
+  document.getElementById('startBtn').addEventListener('click', () => {
+    document.querySelector('a[href="#contact"]').click();
+  });
+  
+  document.getElementById('viewWork').addEventListener('click', () => {
+    document.querySelector('a[href="#work"]').click();
+  });
+
+  // Contact form handling
+  const contactForm = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const formMessage = document.getElementById('formMessage');
+  
+  if (contactForm) {
+    contactForm.addEventListener('submit', handleFormSubmit);
+    
+    // Real-time validation
+    const inputs = contactForm.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+      input.addEventListener('blur', validateField);
+      input.addEventListener('input', clearFieldError);
+    });
+  }
+  
+  function validateField(e) {
+    const field = e.target;
+    const errorElement = document.getElementById(field.id + 'Error');
+    
+    if (!field.checkValidity()) {
+      showFieldError(field, errorElement);
+      return false;
+    }
+    
+    clearFieldError(field);
+    return true;
+  }
+  
+  function showFieldError(field, errorElement) {
+    field.style.borderColor = '#ff6b6b';
+    if (errorElement) {
+      errorElement.style.display = 'block';
+    }
+  }
+  
+  function clearFieldError(e) {
+    const field = e.target || e;
+    const errorElement = document.getElementById(field.id + 'Error');
+    
+    field.style.borderColor = '';
+    if (errorElement) {
+      errorElement.style.display = 'none';
+    }
+  }
+  
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    
+    // Validate all fields
+    let isValid = true;
+    const fields = [
+      { id: 'name', errorId: 'nameError' },
+      { id: 'email', errorId: 'emailError' },
+      { id: 'message', errorId: 'messageError' }
+    ];
+    
+    fields.forEach(field => {
+      const input = document.getElementById(field.id);
+      const errorElement = document.getElementById(field.errorId);
+      
+      if (!input.checkValidity()) {
+        showFieldError(input, errorElement);
+        isValid = false;
       }
     });
+    
+    if (!isValid) {
+      showFormMessage('Please correct the errors above.', 'error');
+      return;
+    }
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+    
+    // Simulate form submission
+    setTimeout(() => {
+      sendEmail();
+      
+      // Show success message
+      showFormMessage('Thank you! Your message has been sent successfully.', 'success');
+      contactForm.reset();
+      
+      // Reset button state
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
+    }, 1500);
+  }
   
-    // Add initial quick replies
-    addQuickReplies();
+  function showFormMessage(message, type) {
+    formMessage.textContent = message;
+    formMessage.className = 'form-message ' + type;
+  }
+  
+  // Contact form -> opens default email client (mailto) with filled content
+  function sendEmail() {
+    const name = encodeURIComponent(document.getElementById('name').value.trim());
+    const email = encodeURIComponent(document.getElementById('email').value.trim());
+    const message = encodeURIComponent(document.getElementById('message').value.trim());
+
+    if (!name || !email || !message) {
+      showFormMessage('Please complete all fields.', 'error');
+      return;
+    }
+
+    // Compose mailto link
+    const to = 'info@dglob.tech,akuredamilola2021@gmail.com';
+    const subject = encodeURIComponent('DGLOB Website Inquiry from ' + (name || 'Website Visitor'));
+    const body = encodeURIComponent(
+      'Name: ' + name + '\n' +
+      'Contact: ' + email + '\n\n' +
+      'Message:\n' + message + '\n\n' +
+      '— Sent from DGLOB website contact form'
+    );
+
+    // Open mail client
+    window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + body;
+  }
+
+  // Lazy loading for images
+  if ('loading' in HTMLImageElement.prototype) {
+    // Browser supports native lazy loading
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    images.forEach(img => {
+      if (img.dataset.src) {
+        img.src = img.dataset.src;
+      }
+    });
+  }
+});
+
+// Global functions for video handling
+function openInNewTab(url) {
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+function downloadVideo(url) {
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'project-video.mp4';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+// Chatbot functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const chatbotContainer = document.getElementById('chatbot-container');
+  const chatbotToggle = document.getElementById('chatbot-toggle');
+  const chatbotClose = document.getElementById('chatbot-close');
+  const chatbotInput = document.getElementById('chatbot-input');
+  const chatbotSend = document.getElementById('chatbot-send');
+  const chatbotMessages = document.getElementById('chatbot-messages');
+
+  // Chatbot knowledge base
+  const knowledgeBase = {
+    greetings: [
+      "Hello! I'm your DGLOB assistant. How can I help you today?",
+      "Hi there! Ready to discuss your project?",
+      "Welcome to DGLOB Technologies! What can I assist you with?"
+    ],
+    services: {
+      web: "We offer full-stack web development including frontend (HTML/CSS/JS, React, Vue) and backend (Node.js, Python, PHP). We build responsive, scalable websites and web applications.",
+      design: "Our design services include UI/UX design, branding, graphic design, and motion graphics. We create visually appealing designs that convert.",
+      video: "We provide video editing, motion graphics, social media ads, and corporate videos. From concept to final delivery.",
+      training: "We offer tech training, workshops, and 1-on-1 mentorship in web development, design, and digital skills.",
+      event: "We handle professional event media setup, live streaming, and technical support for conferences and corporate events."
+    },
+    pricing: "Our pricing depends on project scope. We offer flexible packages: Basic ($500-$2K), Business ($2K-$10K), and Enterprise ($10K+). Would you like a custom quote?",
+    timeline: "Typical project timelines: Small websites (2-4 weeks), Web apps (4-12 weeks), Design projects (1-3 weeks). We can adjust based on your needs.",
+    contact: "You can reach us at:\n📧 info@dglob.tech\n📱 +234 811 266 6133 (WhatsApp)\n💬 Or fill out our contact form!",
+    portfolio: "Check out our Projects section to see our work. We've built blogs, business sites, web apps, and more!",
+    default: "I'm not sure I understand. You can ask about:\n• Our services\n• Pricing\n• Project timeline\n• How to contact us\n• View our portfolio"
+  };
+
+  // Quick reply questions
+  const quickReplies = [
+    "What services do you offer?",
+    "How much does a website cost?",
+    "What's your timeline?",
+    "Contact information",
+    "View portfolio"
+  ];
+
+  // Toggle chatbot
+  chatbotToggle.addEventListener('click', () => {
+    chatbotContainer.classList.add('open');
+    chatbotInput.focus();
   });
+
+  chatbotClose.addEventListener('click', () => {
+    chatbotContainer.classList.remove('open');
+  });
+
+  // Send message function
+  function sendMessage() {
+    const message = chatbotInput.value.trim();
+    if (!message) return;
+
+    // Add user message
+    addMessage(message, 'user');
+    chatbotInput.value = '';
+
+    // Bot response
+    setTimeout(() => {
+      const response = generateResponse(message);
+      addMessage(response.message, 'bot');
+      
+      // Add quick replies if it's the first bot message
+      if (response.showQuickReplies) {
+        addQuickReplies();
+      }
+    }, 1000);
+  }
+
+  // Generate bot response
+  function generateResponse(message) {
+    const lowerMessage = message.toLowerCase();
+    
+    if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+      return { 
+        message: knowledgeBase.greetings[Math.floor(Math.random() * knowledgeBase.greetings.length)],
+        showQuickReplies: true 
+      };
+    } else if (lowerMessage.includes('service') || lowerMessage.includes('what do you do')) {
+      return { 
+        message: "We offer several services:\n\n🌐 Web Development: " + knowledgeBase.services.web + 
+                "\n\n🎨 Design & Animation: " + knowledgeBase.services.design +
+                "\n\n🎥 Video Production: " + knowledgeBase.services.video +
+                "\n\n📚 Tech Training: " + knowledgeBase.services.training +
+                "\n\n🎪 Event Media: " + knowledgeBase.services.event +
+                "\n\nWhich service interests you most?",
+        showQuickReplies: false 
+      };
+    } else if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('how much')) {
+      return { message: knowledgeBase.pricing, showQuickReplies: false };
+    } else if (lowerMessage.includes('time') || lowerMessage.includes('how long') || lowerMessage.includes('duration')) {
+      return { message: knowledgeBase.timeline, showQuickReplies: false };
+    } else if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('phone') || lowerMessage.includes('whatsapp')) {
+      return { message: knowledgeBase.contact, showQuickReplies: false };
+    } else if (lowerMessage.includes('portfolio') || lowerMessage.includes('work') || lowerMessage.includes('project')) {
+      return { message: knowledgeBase.portfolio, showQuickReplies: false };
+    } else {
+      return { message: knowledgeBase.default, showQuickReplies: true };
+    }
+  }
+
+  // Add message to chat
+  function addMessage(text, sender) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = sender + '-message';
+    
+    const messageText = document.createElement('p');
+    messageText.textContent = text;
+    messageText.style.margin = '0';
+    messageText.style.whiteSpace = 'pre-line';
+    
+    messageDiv.appendChild(messageText);
+    chatbotMessages.appendChild(messageDiv);
+    
+    // Scroll to bottom
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  // Add quick replies
+  function addQuickReplies() {
+    const quickRepliesDiv = document.createElement('div');
+    quickRepliesDiv.className = 'quick-replies';
+    
+    quickReplies.forEach(reply => {
+      const button = document.createElement('button');
+      button.className = 'quick-reply';
+      button.textContent = reply;
+      button.addEventListener('click', () => {
+        chatbotInput.value = reply;
+        sendMessage();
+      });
+      quickRepliesDiv.appendChild(button);
+    });
+    
+    chatbotMessages.appendChild(quickRepliesDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  // Event listeners
+  chatbotSend.addEventListener('click', sendMessage);
+  
+  chatbotInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      sendMessage();
+    }
+  });
+
+  // Add initial quick replies
+  addQuickReplies();
+});
 </script>
 </body>
   </html>
