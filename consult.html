@@ -346,6 +346,57 @@
             to { transform: rotate(360deg); }
         }
         
+        /* Thank You Page Styles */
+        .thank-you-container {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 50px auto;
+        }
+        
+        .thank-you-icon {
+            font-size: 4rem;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+        
+        .thank-you-title {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+        
+        .thank-you-message {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .back-home-btn {
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .back-home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(26, 86, 219, 0.2);
+        }
+        
         /* Footer */
         footer {
             background-color: var(--text);
@@ -413,6 +464,15 @@
             .form-col {
                 min-width: 100%;
             }
+            
+            .thank-you-container {
+                padding: 40px 20px;
+                margin: 30px auto;
+            }
+            
+            .thank-you-title {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -471,7 +531,7 @@
                 <input type="hidden" name="_subject" value="New Brand Consultation Request - DGLOB Technologies">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="#">
+                <input type="hidden" name="_next" value="https://dg-on.github.io/Dglob-portfolio/thank-you.html">
                 <input type="hidden" name="_autoresponse" value="Thank you for your brand consultation request! We'll review your submission and get back to you within 24 hours. - DGLOB Technologies">
                 <input type="hidden" name="form_type" value="Brand Consultation">
                 
@@ -582,7 +642,7 @@
                 <input type="hidden" name="_subject" value="New Idea/Starter Session Request - DGLOB Technologies">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="#">
+                <input type="hidden" name="_next" value="https://dg-on.github.io/Dglob-portfolio/thank-you.html">
                 <input type="hidden" name="_autoresponse" value="Thank you for your idea/starter session request! We'll review your submission and get back to you within 24 hours. - DGLOB Technologies">
                 <input type="hidden" name="form_type" value="Idea/Starter Session">
                 
@@ -802,34 +862,7 @@
             setupFileUpload('idea-photo', 'idea-photo-upload', 'idea-photo-preview', 5);
         });
         
-        // Status Messages
-        function showSuccessMessage() {
-            document.getElementById('success-message').style.display = 'flex';
-            document.getElementById('error-message').style.display = 'none';
-            
-            // Auto-hide success message after 10 seconds
-            setTimeout(() => {
-                hideStatusMessages();
-            }, 10000);
-        }
-        
-        function showErrorMessage(message = 'Please try again or contact us directly at info@dglobtech.com') {
-            document.getElementById('error-message').style.display = 'flex';
-            document.getElementById('error-message').querySelector('p').textContent = message;
-            document.getElementById('success-message').style.display = 'none';
-            
-            // Auto-hide error message after 10 seconds
-            setTimeout(() => {
-                hideStatusMessages();
-            }, 10000);
-        }
-        
-        function hideStatusMessages() {
-            document.getElementById('success-message').style.display = 'none';
-            document.getElementById('error-message').style.display = 'none';
-        }
-        
-        // Form submission handling - FIXED VERSION
+        // Form submission handling - PROPER VERSION
         function handleFormSubmit(formId, submitBtnId) {
             const form = document.getElementById(formId);
             const submitBtn = document.getElementById(submitBtnId);
@@ -872,47 +905,16 @@
                 const originalText = submitBtn.innerHTML;
                 submitBtn.innerHTML = '<div class="loading"></div> Sending...';
                 
-                // Show success message immediately (FormSubmit works in background)
-                showSuccessMessage();
-                
-                // Reset form after submission
-                setTimeout(() => {
-                    form.reset();
-                    
-                    // Reset file upload areas for this specific form
-                    const uploadAreas = form.querySelectorAll('.file-upload');
-                    uploadAreas.forEach(area => {
-                        area.innerHTML = `
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <p>Click to upload</p>
-                            <p class="file-text">JPG, PNG or GIF (Max 5MB)</p>
-                        `;
-                    });
-                    
-                    // Reset previews for this specific form
-                    const previews = form.querySelectorAll('[id$="preview"]');
-                    previews.forEach(preview => {
-                        preview.innerHTML = '';
-                    });
-                    
-                    // Reset form styles
-                    const formGroups = form.querySelectorAll('.form-group');
-                    formGroups.forEach(group => {
-                        group.style.borderLeft = '';
-                        group.style.paddingLeft = '';
-                    });
-                    
-                    // Re-enable submit button
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalText;
-                }, 2000);
+                // Show loading state
+                submitBtn.innerHTML = '<div class="loading"></div> Sending your request...';
                 
                 // IMPORTANT: Let the form submit normally to FormSubmit
-                // FormSubmit will handle the email sending in the background
-                // The form will redirect to the _next URL (which is "#" - same page)
+                // FormSubmit will:
+                // 1. Process the form
+                // 2. Send you an email
+                // 3. Redirect to the _next URL (thank you page)
                 
-                // Scroll to top to show success message
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                // Form will submit normally - no JavaScript interference
             });
         }
         
@@ -945,6 +947,36 @@
         document.addEventListener('DOMContentLoaded', function() {
             hideStatusMessages();
         });
+        
+        // Simple status message functions (not used in form submission)
+        function showErrorMessage(message = 'Please fill in all required fields.') {
+            // This is only for validation errors now
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'status-message error';
+            errorDiv.innerHTML = `
+                <i class="fas fa-exclamation-circle"></i>
+                <div>
+                    <strong>Validation Error</strong>
+                    <p>${message}</p>
+                </div>
+            `;
+            
+            // Insert at top of form container
+            const formContainer = document.querySelector('.form-container');
+            formContainer.insertBefore(errorDiv, formContainer.firstChild);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
+        }
+        
+        function hideStatusMessages() {
+            // Remove any existing status messages
+            document.querySelectorAll('.status-message').forEach(msg => {
+                msg.remove();
+            });
+        }
     </script>
 </body>
-</html>
+                                                                  </html>
