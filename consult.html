@@ -319,6 +319,20 @@
             color: var(--error);
         }
         
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
         /* Footer */
         footer {
             background-color: var(--text);
@@ -434,15 +448,18 @@
             </div>
             
             <!-- Brand Consultation Form -->
-            <!-- Replace YOUR_EMAIL_HERE with your actual email -->
-            <form id="brand-form" class="form-section active" action="https://formsubmit.co/akuredamilola2021@gmail.com" method="POST">
+            <form id="brand-form" class="form-section active" 
+                  action="https://formsubmit.co/709818d23e391e588b640b5bd2785e35" 
+                  method="POST"
+                  enctype="multipart/form-data">
                 <h2 class="form-title">Brand Consultation Form</h2>
                 
-                <!-- FormSubmit Configuration -->
+                <!-- FormSubmit Configuration - FIXED -->
                 <input type="hidden" name="_subject" value="New Brand Consultation Request - DGLOB Technologies">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                <input type="hidden" name="_autoresponse" value="Thank you for your brand consultation request! We'll review your submission and get back to you within 24 hours. - DGLOB Technologies">
                 <input type="hidden" name="form_type" value="Brand Consultation">
                 
                 <div class="form-row">
@@ -453,7 +470,7 @@
                                 <i class="fas fa-cloud-upload-alt"></i>
                                 <p>Click to upload your picture</p>
                                 <p class="file-text">JPG, PNG or GIF (Max 5MB)</p>
-                                <input type="file" id="brand-photo" name="brand_photo" class="file-input" accept="image/*">
+                                <input type="file" id="brand-photo" name="Your Picture" class="file-input" accept="image/*">
                             </div>
                             <div id="brand-photo-preview"></div>
                         </div>
@@ -462,19 +479,19 @@
                     <div class="form-col">
                         <div class="form-group">
                             <label for="brand-name">Full Name <span class="required">*</span></label>
-                            <input type="text" id="brand-name" name="full_name" placeholder="Enter your full name" required>
+                            <input type="text" id="brand-name" name="Full Name" placeholder="Enter your full name" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="brand-email">Email Address <span class="required">*</span></label>
-                            <input type="email" id="brand-email" name="email" placeholder="Enter your email address" required>
+                            <input type="email" id="brand-email" name="Email Address" placeholder="Enter your email address" required>
                         </div>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="business-name">Brand / Business Name <span class="required">*</span></label>
-                    <input type="text" id="business-name" name="business_name" placeholder="Enter your brand or business name" required>
+                    <input type="text" id="business-name" name="Brand / Business Name" placeholder="Enter your brand or business name" required>
                 </div>
                 
                 <div class="form-group">
@@ -483,35 +500,35 @@
                         <i class="fas fa-file-upload"></i>
                         <p>Click to upload your logo or flyer</p>
                         <p class="file-text">JPG, PNG, PDF (Max 10MB)</p>
-                        <input type="file" id="brand-logo" name="brand_logo" class="file-input" accept="image/*,.pdf">
+                        <input type="file" id="brand-logo" name="Brand Logo or Flyer" class="file-input" accept="image/*,.pdf">
                     </div>
                     <div id="brand-logo-preview"></div>
                 </div>
                 
                 <div class="form-group">
                     <label for="brand-description">What does your brand do? <span class="required">*</span></label>
-                    <textarea id="brand-description" name="brand_description" rows="4" placeholder="Briefly describe your brand's products, services, or mission" required></textarea>
+                    <textarea id="brand-description" name="What does your brand do?" rows="4" placeholder="Briefly describe your brand's products, services, or mission" required></textarea>
                 </div>
                 
                 <div class="form-group">
                     <label for="brand-challenge">What is your biggest challenge right now? <span class="required">*</span></label>
-                    <textarea id="brand-challenge" name="biggest_challenge" rows="4" placeholder="Describe the main challenge your brand is facing" required></textarea>
+                    <textarea id="brand-challenge" name="What is your biggest challenge right now?" rows="4" placeholder="Describe the main challenge your brand is facing" required></textarea>
                 </div>
                 
                 <div class="form-group">
                     <label for="brand-goal">What do you want to achieve from this consultation? <span class="required">*</span></label>
-                    <textarea id="brand-goal" name="consultation_goal" rows="4" placeholder="What are your specific goals for this consultation session?" required></textarea>
+                    <textarea id="brand-goal" name="What do you want to achieve from this consultation?" rows="4" placeholder="What are your specific goals for this consultation session?" required></textarea>
                 </div>
                 
                 <div class="form-group">
                     <label>Have you worked with a brand consultant before? <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
-                            <input type="radio" id="consultant-yes" name="worked_with_consultant" value="Yes" required>
+                            <input type="radio" id="consultant-yes" name="Have you worked with a brand consultant before?" value="Yes" required>
                             <label for="consultant-yes">Yes</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="consultant-no" name="worked_with_consultant" value="No" required>
+                            <input type="radio" id="consultant-no" name="Have you worked with a brand consultant before?" value="No" required>
                             <label for="consultant-no">No</label>
                         </div>
                     </div>
@@ -521,11 +538,11 @@
                     <label>Preferred meeting type <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
-                            <input type="radio" id="meeting-physical" name="meeting_type" value="Physical" required>
+                            <input type="radio" id="meeting-physical" name="Preferred meeting type" value="Physical" required>
                             <label for="meeting-physical">Physical</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="meeting-online" name="meeting_type" value="Online" required>
+                            <input type="radio" id="meeting-online" name="Preferred meeting type" value="Online" required>
                             <label for="meeting-online">Online</label>
                         </div>
                     </div>
@@ -538,14 +555,18 @@
             </form>
             
             <!-- Idea/Starter Session Form -->
-            <form id="idea-form" class="form-section" action="https://formsubmit.co/akuredamilola2021@gmail.com" method="POST">
+            <form id="idea-form" class="form-section" 
+                  action="https://formsubmit.co/709818d23e391e588b640b5bd2785e35" 
+                  method="POST"
+                  enctype="multipart/form-data">
                 <h2 class="form-title">Idea / Starter Session Form</h2>
                 
-                <!-- FormSubmit Configuration -->
+                <!-- FormSubmit Configuration - FIXED -->
                 <input type="hidden" name="_subject" value="New Idea/Starter Session Request - DGLOB Technologies">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                <input type="hidden" name="_autoresponse" value="Thank you for your idea/starter session request! We'll review your submission and get back to you within 24 hours. - DGLOB Technologies">
                 <input type="hidden" name="form_type" value="Idea/Starter Session">
                 
                 <div class="form-row">
@@ -556,7 +577,7 @@
                                 <i class="fas fa-cloud-upload-alt"></i>
                                 <p>Click to upload your picture</p>
                                 <p class="file-text">JPG, PNG or GIF (Max 5MB)</p>
-                                <input type="file" id="idea-photo" name="idea_photo" class="file-input" accept="image/*">
+                                <input type="file" id="idea-photo" name="Your Picture" class="file-input" accept="image/*">
                             </div>
                             <div id="idea-photo-preview"></div>
                         </div>
@@ -565,12 +586,12 @@
                     <div class="form-col">
                         <div class="form-group">
                             <label for="idea-name">Full Name <span class="required">*</span></label>
-                            <input type="text" id="idea-name" name="full_name" placeholder="Enter your full name" required>
+                            <input type="text" id="idea-name" name="Full Name" placeholder="Enter your full name" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="idea-email">Email Address <span class="required">*</span></label>
-                            <input type="email" id="idea-email" name="email" placeholder="Enter your email address" required>
+                            <input type="email" id="idea-email" name="Email Address" placeholder="Enter your email address" required>
                         </div>
                     </div>
                 </div>
@@ -579,15 +600,15 @@
                     <label>Do you already have an idea? <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
-                            <input type="radio" id="idea-clear" name="idea_status" value="Yes, clear idea" required>
+                            <input type="radio" id="idea-clear" name="Do you already have an idea?" value="Yes, clear idea" required>
                             <label for="idea-clear">Yes, clear idea</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="idea-mind" name="idea_status" value="I have something in mind" required>
+                            <input type="radio" id="idea-mind" name="Do you already have an idea?" value="I have something in mind" required>
                             <label for="idea-mind">I have something in mind</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="idea-guidance" name="idea_status" value="Not yet, I need guidance" required>
+                            <input type="radio" id="idea-guidance" name="Do you already have an idea?" value="Not yet, I need guidance" required>
                             <label for="idea-guidance">Not yet, I need guidance</label>
                         </div>
                     </div>
@@ -595,26 +616,26 @@
                 
                 <div class="form-group">
                     <label for="idea-description">Briefly describe your idea (if any)</label>
-                    <textarea id="idea-description" name="idea_description" rows="4" placeholder="You can say 'Not sure yet' or describe your idea here"></textarea>
+                    <textarea id="idea-description" name="Briefly describe your idea (if any)" rows="4" placeholder="You can say 'Not sure yet' or describe your idea here"></textarea>
                 </div>
                 
                 <div class="form-group">
                     <label>What do you need help with most right now? <span class="required">*</span></label>
                     <div class="checkbox-group">
                         <div class="checkbox-option">
-                            <input type="checkbox" id="help-idea" name="help_needed[]" value="Clarifying my idea">
+                            <input type="checkbox" id="help-idea" name="What do you need help with most right now? - Clarifying my idea" value="Clarifying my idea">
                             <label for="help-idea">Clarifying my idea</label>
                         </div>
                         <div class="checkbox-option">
-                            <input type="checkbox" id="help-plan" name="help_needed[]" value="Structuring a plan">
+                            <input type="checkbox" id="help-plan" name="What do you need help with most right now? - Structuring a plan" value="Structuring a plan">
                             <label for="help-plan">Structuring a plan</label>
                         </div>
                         <div class="checkbox-option">
-                            <input type="checkbox" id="help-tech" name="help_needed[]" value="Tech direction (website, app, system)">
+                            <input type="checkbox" id="help-tech" name="What do you need help with most right now? - Tech direction" value="Tech direction (website, app, system)">
                             <label for="help-tech">Tech direction (website, app, system)</label>
                         </div>
                         <div class="checkbox-option">
-                            <input type="checkbox" id="help-guidance" name="help_needed[]" value="General guidance">
+                            <input type="checkbox" id="help-guidance" name="What do you need help with most right now? - General guidance" value="General guidance">
                             <label for="help-guidance">General guidance</label>
                         </div>
                     </div>
@@ -622,18 +643,18 @@
                 
                 <div class="form-group">
                     <label for="idea-goal">What is your goal for this session? <span class="required">*</span></label>
-                    <input type="text" id="idea-goal" name="session_goal" placeholder="e.g. clarity, next steps, validation" required>
+                    <input type="text" id="idea-goal" name="What is your goal for this session?" placeholder="e.g. clarity, next steps, validation" required>
                 </div>
                 
                 <div class="form-group">
                     <label>Preferred meeting type <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
-                            <input type="radio" id="idea-online" name="meeting_type" value="Online" required>
+                            <input type="radio" id="idea-online" name="Preferred meeting type" value="Online" required>
                             <label for="idea-online">Online</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="idea-physical" name="meeting_type" value="Physical" required>
+                            <input type="radio" id="idea-physical" name="Preferred meeting type" value="Physical" required>
                             <label for="idea-physical">Physical</label>
                         </div>
                     </div>
@@ -688,8 +709,8 @@
             });
         });
         
-        // File Upload Previews
-        function setupFileUpload(uploadAreaId, fileInputId, previewId) {
+        // File Upload Previews - IMPROVED
+        function setupFileUpload(uploadAreaId, fileInputId, previewId, maxSizeMB = 5) {
             const uploadArea = document.getElementById(uploadAreaId);
             const fileInput = document.getElementById(fileInputId);
             const preview = document.getElementById(previewId);
@@ -702,8 +723,17 @@
             
             fileInput.addEventListener('change', function() {
                 if (this.files && this.files[0]) {
-                    const fileName = this.files[0].name;
-                    const fileSize = (this.files[0].size / (1024*1024)).toFixed(2); // Convert to MB
+                    const file = this.files[0];
+                    const fileName = file.name;
+                    const fileSize = (file.size / (1024*1024)).toFixed(2); // Convert to MB
+                    const fileType = file.type;
+                    
+                    // Check file size
+                    if (fileSize > maxSizeMB) {
+                        alert(`File size (${fileSize} MB) exceeds maximum allowed size (${maxSizeMB} MB). Please choose a smaller file.`);
+                        this.value = ''; // Clear the file input
+                        return;
+                    }
                     
                     // Update upload area display
                     uploadArea.innerHTML = `
@@ -713,24 +743,24 @@
                     `;
                     
                     // For image preview
-                    if (this.files[0].type.startsWith('image/')) {
+                    if (fileType.startsWith('image/')) {
                         const reader = new FileReader();
                         reader.onload = function(e) {
                             preview.innerHTML = `
                                 <div style="margin-top: 15px; text-align: center;">
                                     <img src="${e.target.result}" alt="Preview" style="max-width: 200px; max-height: 200px; border-radius: 8px; border: 1px solid #d1d5db; object-fit: contain;">
-                                    <p style="font-size: 0.9rem; color: #6b7280; margin-top: 5px;">Preview - File will be sent via email</p>
+                                    <p style="font-size: 0.9rem; color: #6b7280; margin-top: 5px;">Preview - ${fileSize} MB</p>
                                 </div>
                             `;
                         }
-                        reader.readAsDataURL(this.files[0]);
+                        reader.readAsDataURL(file);
                     } else {
                         preview.innerHTML = `
                             <div style="margin-top: 15px; text-align: center;">
                                 <p style="font-size: 0.9rem; color: #6b7280;">
                                     <i class="fas fa-file-alt" style="color: #1a56db; font-size: 2rem;"></i><br>
                                     File: ${fileName}<br>
-                                    (Will be sent via email)
+                                    Size: ${fileSize} MB
                                 </p>
                             </div>
                         `;
@@ -739,10 +769,10 @@
             });
         }
         
-        // Initialize file uploads
-        setupFileUpload('brand-photo-upload', 'brand-photo', 'brand-photo-preview');
-        setupFileUpload('brand-logo-upload', 'brand-logo', 'brand-logo-preview');
-        setupFileUpload('idea-photo-upload', 'idea-photo', 'idea-photo-preview');
+        // Initialize file uploads with size limits
+        setupFileUpload('brand-photo-upload', 'brand-photo', 'brand-photo-preview', 5);
+        setupFileUpload('brand-logo-upload', 'brand-logo', 'brand-logo-preview', 10);
+        setupFileUpload('idea-photo-upload', 'idea-photo', 'idea-photo-preview', 5);
         
         // Status Messages
         function showSuccessMessage() {
@@ -755,8 +785,9 @@
             }, 10000);
         }
         
-        function showErrorMessage() {
+        function showErrorMessage(message = 'Please try again or contact us directly at info@dglobtech.com') {
             document.getElementById('error-message').style.display = 'flex';
+            document.getElementById('error-message').querySelector('p').textContent = message;
             document.getElementById('success-message').style.display = 'none';
             
             // Auto-hide error message after 10 seconds
@@ -775,7 +806,9 @@
             const form = document.getElementById(formId);
             const submitBtn = document.getElementById(submitBtnId);
             
-            form.addEventListener('submit', function(e) {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
                 // Check if all required fields are filled
                 const requiredFields = this.querySelectorAll('[required]');
                 let allValid = true;
@@ -802,26 +835,94 @@
                 });
                 
                 if (!allValid) {
-                    e.preventDefault();
-                    alert('Please fill in all required fields.');
-                    
-                    // Show error message
-                    showErrorMessage();
-                    
-                    // Scroll to top to show error message
+                    showErrorMessage('Please fill in all required fields.');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                     return;
                 }
                 
                 // Disable submit button to prevent multiple submissions
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<div class="loading"></div> Processing...';
                 
-                // Show success message (FormSubmit will redirect to thank you page)
-                showSuccessMessage();
-                
-                // FormSubmit will handle the actual submission and redirect
-                // The form will continue with its normal submission flow
+                try {
+                    // Create FormData object
+                    const formData = new FormData(this);
+                    
+                    // Show uploading status for large files
+                    const fileInputs = form.querySelectorAll('input[type="file"]');
+                    let hasLargeFile = false;
+                    
+                    fileInputs.forEach(input => {
+                        if (input.files && input.files[0]) {
+                            const fileSize = input.files[0].size / (1024*1024); // MB
+                            if (fileSize > 3) {
+                                hasLargeFile = true;
+                            }
+                        }
+                    });
+                    
+                    if (hasLargeFile) {
+                        submitBtn.innerHTML = '<div class="loading"></div> Uploading files (this may take a moment)...';
+                    }
+                    
+                    // Submit form using fetch API
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (response.ok) {
+                        // Show success message
+                        showSuccessMessage();
+                        
+                        // Reset form
+                        form.reset();
+                        
+                        // Reset file upload areas for this specific form
+                        const uploadAreas = form.querySelectorAll('.file-upload');
+                        uploadAreas.forEach(area => {
+                            area.innerHTML = `
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Click to upload</p>
+                                <p class="file-text">JPG, PNG or GIF (Max 5MB)</p>
+                            `;
+                        });
+                        
+                        // Reset previews for this specific form
+                        const previews = form.querySelectorAll('[id$="preview"]');
+                        previews.forEach(preview => {
+                            preview.innerHTML = '';
+                        });
+                        
+                        // Reset form styles
+                        const formGroups = form.querySelectorAll('.form-group');
+                        formGroups.forEach(group => {
+                            group.style.borderLeft = '';
+                            group.style.paddingLeft = '';
+                        });
+                        
+                        // Scroll to top to show success message
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                    
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    showErrorMessage('There was an error submitting the form. Please try again.');
+                    
+                    // Scroll to top to show error message
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                } finally {
+                    // Re-enable submit button after 3 seconds
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalText;
+                    }, 3000);
+                }
             });
         }
         
@@ -856,4 +957,4 @@
         });
     </script>
 </body>
-                </html>
+    </html>
