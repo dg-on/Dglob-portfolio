@@ -238,6 +238,10 @@
             width: auto;
         }
         
+        .file-upload-container {
+            position: relative;
+        }
+        
         .file-upload {
             border: 2px dashed var(--border);
             border-radius: var(--radius);
@@ -245,6 +249,8 @@
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: block;
+            position: relative;
         }
         
         .file-upload:hover {
@@ -259,7 +265,14 @@
         }
         
         .file-input {
-            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 10;
         }
         
         .file-text {
@@ -454,7 +467,7 @@
                   enctype="multipart/form-data">
                 <h2 class="form-title">Brand Consultation Form</h2>
                 
-                <!-- FormSubmit Configuration - FIXED -->
+                <!-- FormSubmit Configuration -->
                 <input type="hidden" name="_subject" value="New Brand Consultation Request - DGLOB Technologies">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
@@ -466,10 +479,12 @@
                     <div class="form-col">
                         <div class="form-group">
                             <label for="brand-photo">Your Picture</label>
-                            <div class="file-upload" id="brand-photo-upload">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <p>Click to upload your picture</p>
-                                <p class="file-text">JPG, PNG or GIF (Max 5MB)</p>
+                            <div class="file-upload-container">
+                                <div class="file-upload" id="brand-photo-upload">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Click to upload your picture</p>
+                                    <p class="file-text">JPG, PNG or GIF (Max 5MB)</p>
+                                </div>
                                 <input type="file" id="brand-photo" name="Your Picture" class="file-input" accept="image/*">
                             </div>
                             <div id="brand-photo-preview"></div>
@@ -496,10 +511,12 @@
                 
                 <div class="form-group">
                     <label for="brand-logo">Brand Logo or Flyer (if existing)</label>
-                    <div class="file-upload" id="brand-logo-upload">
-                        <i class="fas fa-file-upload"></i>
-                        <p>Click to upload your logo or flyer</p>
-                        <p class="file-text">JPG, PNG, PDF (Max 10MB)</p>
+                    <div class="file-upload-container">
+                        <div class="file-upload" id="brand-logo-upload">
+                            <i class="fas fa-file-upload"></i>
+                            <p>Click to upload your logo or flyer</p>
+                            <p class="file-text">JPG, PNG, PDF (Max 10MB)</p>
+                        </div>
                         <input type="file" id="brand-logo" name="Brand Logo or Flyer" class="file-input" accept="image/*,.pdf">
                     </div>
                     <div id="brand-logo-preview"></div>
@@ -561,7 +578,7 @@
                   enctype="multipart/form-data">
                 <h2 class="form-title">Idea / Starter Session Form</h2>
                 
-                <!-- FormSubmit Configuration - FIXED -->
+                <!-- FormSubmit Configuration -->
                 <input type="hidden" name="_subject" value="New Idea/Starter Session Request - DGLOB Technologies">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
@@ -573,10 +590,12 @@
                     <div class="form-col">
                         <div class="form-group">
                             <label for="idea-photo">Your Picture</label>
-                            <div class="file-upload" id="idea-photo-upload">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <p>Click to upload your picture</p>
-                                <p class="file-text">JPG, PNG or GIF (Max 5MB)</p>
+                            <div class="file-upload-container">
+                                <div class="file-upload" id="idea-photo-upload">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Click to upload your picture</p>
+                                    <p class="file-text">JPG, PNG or GIF (Max 5MB)</p>
+                                </div>
                                 <input type="file" id="idea-photo" name="Your Picture" class="file-input" accept="image/*">
                             </div>
                             <div id="idea-photo-preview"></div>
@@ -709,18 +728,13 @@
             });
         });
         
-        // File Upload Previews - IMPROVED
-        function setupFileUpload(uploadAreaId, fileInputId, previewId, maxSizeMB = 5) {
-            const uploadArea = document.getElementById(uploadAreaId);
+        // File Upload Previews - SIMPLIFIED AND WORKING VERSION
+        function setupFileUpload(fileInputId, uploadAreaId, previewId, maxSizeMB = 5) {
             const fileInput = document.getElementById(fileInputId);
+            const uploadArea = document.getElementById(uploadAreaId);
             const preview = document.getElementById(previewId);
             
-            // Clicking the upload area triggers file input
-            uploadArea.addEventListener('click', function(e) {
-                e.preventDefault();
-                fileInput.click();
-            });
-            
+            // When file input changes (user selects a file)
             fileInput.addEventListener('change', function() {
                 if (this.files && this.files[0]) {
                     const file = this.files[0];
@@ -732,6 +746,12 @@
                     if (fileSize > maxSizeMB) {
                         alert(`File size (${fileSize} MB) exceeds maximum allowed size (${maxSizeMB} MB). Please choose a smaller file.`);
                         this.value = ''; // Clear the file input
+                        uploadArea.innerHTML = `
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Click to upload</p>
+                            <p class="file-text">JPG, PNG or GIF (Max ${maxSizeMB}MB)</p>
+                        `;
+                        preview.innerHTML = '';
                         return;
                     }
                     
@@ -767,12 +787,20 @@
                     }
                 }
             });
+            
+            // Also allow clicking the upload area to trigger file input
+            uploadArea.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent event bubbling
+                fileInput.click();
+            });
         }
         
         // Initialize file uploads with size limits
-        setupFileUpload('brand-photo-upload', 'brand-photo', 'brand-photo-preview', 5);
-        setupFileUpload('brand-logo-upload', 'brand-logo', 'brand-logo-preview', 10);
-        setupFileUpload('idea-photo-upload', 'idea-photo', 'idea-photo-preview', 5);
+        document.addEventListener('DOMContentLoaded', function() {
+            setupFileUpload('brand-photo', 'brand-photo-upload', 'brand-photo-preview', 5);
+            setupFileUpload('brand-logo', 'brand-logo-upload', 'brand-logo-preview', 10);
+            setupFileUpload('idea-photo', 'idea-photo-upload', 'idea-photo-preview', 5);
+        });
         
         // Status Messages
         function showSuccessMessage() {
@@ -957,4 +985,4 @@
         });
     </script>
 </body>
-    </html>
+                </html>
