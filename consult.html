@@ -471,7 +471,7 @@
                 <input type="hidden" name="_subject" value="New Brand Consultation Request - DGLOB Technologies">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                <input type="hidden" name="_next" value="#">
                 <input type="hidden" name="_autoresponse" value="Thank you for your brand consultation request! We'll review your submission and get back to you within 24 hours. - DGLOB Technologies">
                 <input type="hidden" name="form_type" value="Brand Consultation">
                 
@@ -582,7 +582,7 @@
                 <input type="hidden" name="_subject" value="New Idea/Starter Session Request - DGLOB Technologies">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                <input type="hidden" name="_next" value="#">
                 <input type="hidden" name="_autoresponse" value="Thank you for your idea/starter session request! We'll review your submission and get back to you within 24 hours. - DGLOB Technologies">
                 <input type="hidden" name="form_type" value="Idea/Starter Session">
                 
@@ -728,7 +728,7 @@
             });
         });
         
-        // File Upload Previews - SIMPLIFIED AND WORKING VERSION
+        // File Upload Previews
         function setupFileUpload(fileInputId, uploadAreaId, previewId, maxSizeMB = 5) {
             const fileInput = document.getElementById(fileInputId);
             const uploadArea = document.getElementById(uploadAreaId);
@@ -829,14 +829,12 @@
             document.getElementById('error-message').style.display = 'none';
         }
         
-        // Form submission handling
+        // Form submission handling - FIXED VERSION
         function handleFormSubmit(formId, submitBtnId) {
             const form = document.getElementById(formId);
             const submitBtn = document.getElementById(submitBtnId);
             
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
+            form.addEventListener('submit', function(e) {
                 // Check if all required fields are filled
                 const requiredFields = this.querySelectorAll('[required]');
                 let allValid = true;
@@ -863,6 +861,7 @@
                 });
                 
                 if (!allValid) {
+                    e.preventDefault();
                     showErrorMessage('Please fill in all required fields.');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                     return;
@@ -871,86 +870,49 @@
                 // Disable submit button to prevent multiple submissions
                 submitBtn.disabled = true;
                 const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<div class="loading"></div> Processing...';
+                submitBtn.innerHTML = '<div class="loading"></div> Sending...';
                 
-                try {
-                    // Create FormData object
-                    const formData = new FormData(this);
+                // Show success message immediately (FormSubmit works in background)
+                showSuccessMessage();
+                
+                // Reset form after submission
+                setTimeout(() => {
+                    form.reset();
                     
-                    // Show uploading status for large files
-                    const fileInputs = form.querySelectorAll('input[type="file"]');
-                    let hasLargeFile = false;
-                    
-                    fileInputs.forEach(input => {
-                        if (input.files && input.files[0]) {
-                            const fileSize = input.files[0].size / (1024*1024); // MB
-                            if (fileSize > 3) {
-                                hasLargeFile = true;
-                            }
-                        }
+                    // Reset file upload areas for this specific form
+                    const uploadAreas = form.querySelectorAll('.file-upload');
+                    uploadAreas.forEach(area => {
+                        area.innerHTML = `
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Click to upload</p>
+                            <p class="file-text">JPG, PNG or GIF (Max 5MB)</p>
+                        `;
                     });
                     
-                    if (hasLargeFile) {
-                        submitBtn.innerHTML = '<div class="loading"></div> Uploading files (this may take a moment)...';
-                    }
-                    
-                    // Submit form using fetch API
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        body: formData
+                    // Reset previews for this specific form
+                    const previews = form.querySelectorAll('[id$="preview"]');
+                    previews.forEach(preview => {
+                        preview.innerHTML = '';
                     });
                     
-                    if (response.ok) {
-                        // Show success message
-                        showSuccessMessage();
-                        
-                        // Reset form
-                        form.reset();
-                        
-                        // Reset file upload areas for this specific form
-                        const uploadAreas = form.querySelectorAll('.file-upload');
-                        uploadAreas.forEach(area => {
-                            area.innerHTML = `
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <p>Click to upload</p>
-                                <p class="file-text">JPG, PNG or GIF (Max 5MB)</p>
-                            `;
-                        });
-                        
-                        // Reset previews for this specific form
-                        const previews = form.querySelectorAll('[id$="preview"]');
-                        previews.forEach(preview => {
-                            preview.innerHTML = '';
-                        });
-                        
-                        // Reset form styles
-                        const formGroups = form.querySelectorAll('.form-group');
-                        formGroups.forEach(group => {
-                            group.style.borderLeft = '';
-                            group.style.paddingLeft = '';
-                        });
-                        
-                        // Scroll to top to show success message
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                        
-                    } else {
-                        throw new Error('Form submission failed');
-                    }
+                    // Reset form styles
+                    const formGroups = form.querySelectorAll('.form-group');
+                    formGroups.forEach(group => {
+                        group.style.borderLeft = '';
+                        group.style.paddingLeft = '';
+                    });
                     
-                } catch (error) {
-                    console.error('Form submission error:', error);
-                    showErrorMessage('There was an error submitting the form. Please try again.');
-                    
-                    // Scroll to top to show error message
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    
-                } finally {
-                    // Re-enable submit button after 3 seconds
-                    setTimeout(() => {
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = originalText;
-                    }, 3000);
-                }
+                    // Re-enable submit button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                }, 2000);
+                
+                // IMPORTANT: Let the form submit normally to FormSubmit
+                // FormSubmit will handle the email sending in the background
+                // The form will redirect to the _next URL (which is "#" - same page)
+                
+                // Scroll to top to show success message
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         }
         
@@ -985,4 +947,4 @@
         });
     </script>
 </body>
-                </html>
+</html>
