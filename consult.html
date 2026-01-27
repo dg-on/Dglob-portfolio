@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brand Consultation | DGLOB Technologies</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         :root {
             --primary: #1a56db;
@@ -435,8 +434,16 @@
             </div>
             
             <!-- Brand Consultation Form -->
-            <form id="brand-form" class="form-section active">
+            <!-- Replace YOUR_EMAIL_HERE with your actual email -->
+            <form id="brand-form" class="form-section active" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST">
                 <h2 class="form-title">Brand Consultation Form</h2>
+                
+                <!-- FormSubmit Configuration -->
+                <input type="hidden" name="_subject" value="New Brand Consultation Request - DGLOB Technologies">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                <input type="hidden" name="form_type" value="Brand Consultation">
                 
                 <div class="form-row">
                     <div class="form-col">
@@ -524,8 +531,6 @@
                     </div>
                 </div>
                 
-                <input type="hidden" name="form_type" value="Brand Consultation">
-                
                 <button type="submit" class="submit-btn" id="brand-submit">
                     <i class="fas fa-paper-plane"></i>
                     Submit Brand Consultation Request
@@ -533,8 +538,16 @@
             </form>
             
             <!-- Idea/Starter Session Form -->
-            <form id="idea-form" class="form-section">
+            <!-- Replace YOUR_EMAIL_HERE with your actual email (can be same as above) -->
+            <form id="idea-form" class="form-section" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST">
                 <h2 class="form-title">Idea / Starter Session Form</h2>
+                
+                <!-- FormSubmit Configuration -->
+                <input type="hidden" name="_subject" value="New Idea/Starter Session Request - DGLOB Technologies">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                <input type="hidden" name="form_type" value="Idea/Starter Session">
                 
                 <div class="form-row">
                     <div class="form-col">
@@ -627,8 +640,6 @@
                     </div>
                 </div>
                 
-                <input type="hidden" name="form_type" value="Idea/Starter Session">
-                
                 <button type="submit" class="submit-btn" id="idea-submit">
                     <i class="fas fa-lightbulb"></i>
                     Submit Idea Session Request
@@ -653,12 +664,6 @@
     </footer>
     
     <script>
-        // Initialize EmailJS with your public key
-        // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
-        (function() {
-            emailjs.init("rN2BdfDZjBV7l2Viy");
-        })();
-        
         // Tab Switching
         const tabBtns = document.querySelectorAll('.tab-btn');
         const formSections = document.querySelectorAll('.form-section');
@@ -684,7 +689,7 @@
             });
         });
         
-        // File Upload Previews - FIXED VERSION
+        // File Upload Previews
         function setupFileUpload(uploadAreaId, fileInputId, previewId) {
             const uploadArea = document.getElementById(uploadAreaId);
             const fileInput = document.getElementById(fileInputId);
@@ -771,13 +776,7 @@
             const form = document.getElementById(formId);
             const submitBtn = document.getElementById(submitBtnId);
             
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                // Disable submit button to prevent multiple submissions
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                
+            form.addEventListener('submit', function(e) {
                 // Check if all required fields are filled
                 const requiredFields = this.querySelectorAll('[required]');
                 let allValid = true;
@@ -804,96 +803,26 @@
                 });
                 
                 if (!allValid) {
+                    e.preventDefault();
                     alert('Please fill in all required fields.');
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = formId === 'brand-form' 
-                        ? '<i class="fas fa-paper-plane"></i> Submit Brand Consultation Request'
-                        : '<i class="fas fa-lightbulb"></i> Submit Idea Session Request';
-                    return;
-                }
-                
-                // Collect form data
-                const formData = new FormData(this);
-                
-                // Convert FormData to a plain object for EmailJS
-                const formObject = {};
-                formData.forEach((value, key) => {
-                    // Handle arrays (checkboxes)
-                    if (key.endsWith('[]')) {
-                        const actualKey = key.slice(0, -2);
-                        if (!formObject[actualKey]) {
-                            formObject[actualKey] = [];
-                        }
-                        formObject[actualKey].push(value);
-                    } else {
-                        formObject[key] = value;
-                    }
-                });
-                
-                // Convert arrays to strings for email
-                Object.keys(formObject).forEach(key => {
-                    if (Array.isArray(formObject[key])) {
-                        formObject[key] = formObject[key].join(', ');
-                    }
-                });
-                
-                // Add timestamp
-                formObject.timestamp = new Date().toLocaleString();
-                
-                // Send email using EmailJS
-                try {
-                    // Replace these with your actual EmailJS service ID and template ID
-                    const serviceID = 'service_0zba17y';
-                    const templateID = 'template_b24oi04';
                     
-                    // Send the email
-                    await emailjs.send(serviceID, templateID, formObject);
-                    
-                    // Show success message
-                    showSuccessMessage();
-                    
-                    // Reset form
-                    form.reset();
-                    
-                    // Reset file upload areas for this specific form
-                    const uploadAreas = form.querySelectorAll('.file-upload');
-                    uploadAreas.forEach(area => {
-                        area.innerHTML = `
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <p>Click to upload</p>
-                            <p class="file-text">JPG, PNG or GIF (Max 5MB)</p>
-                        `;
-                    });
-                    
-                    // Reset previews for this specific form
-                    const previews = form.querySelectorAll('[id$="preview"]');
-                    previews.forEach(preview => {
-                        preview.innerHTML = '';
-                    });
-                    
-                    // Reset form styles
-                    const formGroups = form.querySelectorAll('.form-group');
-                    formGroups.forEach(group => {
-                        group.style.borderLeft = '';
-                        group.style.paddingLeft = '';
-                    });
-                    
-                    // Scroll to top to show success message
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    
-                } catch (error) {
-                    console.error('EmailJS Error:', error);
+                    // Show error message
                     showErrorMessage();
                     
                     // Scroll to top to show error message
                     window.scrollTo({ top: 0, behavior: 'smooth' });
-                } finally {
-                    // Re-enable submit button
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = formId === 'brand-form' 
-                        ? '<i class="fas fa-paper-plane"></i> Submit Brand Consultation Request'
-                        : '<i class="fas fa-lightbulb"></i> Submit Idea Session Request';
+                    return;
                 }
+                
+                // Disable submit button to prevent multiple submissions
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                
+                // Show success message (FormSubmit will redirect to thank you page)
+                showSuccessMessage();
+                
+                // FormSubmit will handle the actual submission and redirect
+                // The form will continue with its normal submission flow
             });
         }
         
@@ -928,4 +857,4 @@
         });
     </script>
 </body>
-  </html>
+                </html>
